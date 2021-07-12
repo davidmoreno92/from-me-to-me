@@ -1,2 +1,1 @@
-# from-me-to-me
-Daily blog from day until die
+This is a starter template for [Learn Next.js](https://nextjs.org/learn).

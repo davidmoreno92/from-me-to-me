@@ -1,0 +1,23 @@
+{
+  "name": "learn-starter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "date-fns": "^2.22.1",
+    "mongodb": "^3.6.10",
+    "next": "^10.0.0",
+    "next-connect": "^0.10.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.3.1",
+    "@types/react": "^17.0.14",
+    "typescript": "^4.3.5"
+  }
+}
