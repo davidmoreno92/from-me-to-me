@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 export async function getDiaryItems({ paginationOptions = {} }: getProps) {
   const { db } = await connectToDatabase();
 
-  console.log(paginationOptions);
+  console.log("Pagination Options >>>>>>", paginationOptions);
   const diaryCollection = await db.collection("diary-items");
 
   const diaryCount = await diaryCollection
@@ -31,7 +31,7 @@ export async function getDiaryItems({ paginationOptions = {} }: getProps) {
   const diaryData = await diaryCollection
     .find({})
     .sort({ dateCreated: 1 })
-    .limit(10)
+    .limit(20)
     .toArray();
 
   return {

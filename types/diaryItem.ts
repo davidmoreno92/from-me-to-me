@@ -4,5 +4,5 @@ export type DiaryItemType = {
   image?: string;
   video?: string;
   audio?: any;
-  date?: Date;
+  dateCreated?: Date;
 };

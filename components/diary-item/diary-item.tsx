@@ -1,12 +1,6 @@
+import Player from "@components/fields/video/videoPlayer";
+import { DiaryItemType } from "types/diaryItem";
 import React from "react";
-
-type Props = {
-  text: string;
-  textArea: string;
-  image?: string;
-  video?: string;
-  audio?: string;
-};
 
 export const DiaryItem = ({
   text,
@@ -14,34 +8,27 @@ export const DiaryItem = ({
   image,
   video,
   audio,
-}: Props): JSX.Element => {
+  dateCreated,
+}: DiaryItemType): JSX.Element => {
   return (
     <>
       <div className="card">
-        {text && <h3>{text}</h3>}
-        {textArea && (
-          <textarea name="text-area" value={textArea}>
-            Default value
-          </textarea>
+        {text && (
+          <h3 className="diary-item-title">
+            {text} {dateCreated && dateCreated}
+          </h3>
         )}
-        {image && <img src="image" className="img-responsive" />}
-        {video && (
-          <video>
-            <source
-              src={video}
-              type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
-            />
-          </video>
-        )}
-        {audio && (
-          <audio controls>
-            <source src="horse.ogg" type="audio/ogg" />
-            <source src="horse.mp3" type="audio/mpeg" />
-          </audio>
-        )}
+        {textArea && <p>{textArea}</p>}
+        {image && <img src={image} className="img-responsive" />}
+        {video && <Player url={"https://www.w3schools.com/html/mov_bbb.mp4"} />}
+        {audio && <Player url={"https://www.w3schools.com/html/horse.ogg"} />}
       </div>
       <style jsx>{`
-        .card {
+        img {
+          max-width: 100%;
+          width: 100%;
+        }
+        /* .card {
           margin: 1rem;
           flex-basis: 45%;
           padding: 1.5rem;
@@ -60,16 +47,17 @@ export const DiaryItem = ({
           border-color: #0070f3;
         }
 
-        .card h3 {
+        .card .diary-item-title {
           margin: 0 0 1rem 0;
           font-size: 1.5rem;
+          font-style: italic;
         }
 
         .card p {
           margin: 0;
           font-size: 1.25rem;
           line-height: 1.5;
-        }
+        } */
       `}</style>
     </>
   );

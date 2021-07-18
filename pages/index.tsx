@@ -6,9 +6,10 @@ import { getDiaryItems } from "@api/diary";
 
 type Props = {
   diaryItems: DiaryItemType[];
+  count: number;
 };
 
-export default function Home({ diaryItems }: Props) {
+export default function Home({ diaryItems, count }: Props) {
   return (
     <div className="container">
       <Head>
@@ -19,7 +20,7 @@ export default function Home({ diaryItems }: Props) {
       <main>
         <h1 className="title">My Diary</h1>
         <div className="grid">
-          <DiaryList items={diaryItems} />
+          <DiaryList items={diaryItems} count={count} />
         </div>
       </main>
 
@@ -130,9 +131,11 @@ export default function Home({ diaryItems }: Props) {
 export async function getServerSideProps() {
   const diaryItems = await getDiaryItems({});
 
+  console.log("DIARY ITEMS", diaryItems);
   return {
     props: {
       diaryItems: JSON.parse(JSON.stringify(diaryItems.items)),
+      count: diaryItems.count,
     },
   };
 }

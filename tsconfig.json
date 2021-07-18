@@ -20,9 +20,9 @@
       "@api/*": [
         "pages/api/*"
       ],
-      "@types/*": [
-        "types/*"
-      ],
+      "@resources/*": [
+        "resources/*"
+      ]
     },
     "allowJs": true,
     "skipLibCheck": true,
