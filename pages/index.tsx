@@ -1,30 +1,25 @@
 import Head from "next/head";
-import { useEffect } from "react";
-import { DiaryList } from "../components/diary-list/diary-list";
-import { DiaryItemType } from "../types/diaryItem";
 
-export default function Home() {
-  const diaryList: DiaryItemType[] = [];
+import { DiaryList } from "@components/diary-list/diary-list";
+import { DiaryItemType } from "types/diaryItem";
+import { getDiaryItems } from "@api/diary";
 
-  for (let i = 0; i < 20; i++) {
-    diaryList.push({
-      text: "Documentation",
-      textArea: "Audio",
-      image: "Imágen de la publicación",
-    });
-  }
+type Props = {
+  diaryItems: DiaryItemType[];
+};
 
+export default function Home({ diaryItems }: Props) {
   return (
     <div className="container">
       <Head>
-        <title>David Moreno - My Diary</title>
+        <title>David Moreno - My Diary </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
         <h1 className="title">My Diary</h1>
         <div className="grid">
-          <DiaryList items={diaryList} />
+          <DiaryList items={diaryItems} />
         </div>
       </main>
 
@@ -130,4 +125,14 @@ export default function Home() {
       `}</style>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const diaryItems = await getDiaryItems({});
+
+  return {
+    props: {
+      diaryItems: JSON.parse(JSON.stringify(diaryItems.items)),
+    },
+  };
 }
